@@ -7,7 +7,7 @@ public class ClickToMove : MonoBehaviour {
     public static bool attack;
     public float speed;
     public CharacterController characterController;
-    public Vector3 position;
+    public static Vector3 position;
 
     public Animation anim;
 
@@ -28,7 +28,7 @@ public class ClickToMove : MonoBehaviour {
         {
             LocatePosition();
         }
-        if (!attack)
+        if (!attack && combat.hp>0)
         {
             MoveToPosition();
         }
@@ -48,7 +48,6 @@ public class ClickToMove : MonoBehaviour {
     }
     void MoveToPosition()
     {
-        
         if (Vector3.Distance(transform.position, position) > 1)
         {
             Quaternion newRotation = Quaternion.LookRotation(position - transform.position, Vector3.forward);
